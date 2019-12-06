@@ -14,5 +14,6 @@ namespace WebApiProStore.Models
             
         }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationProduct> ApplicationProducts { get; set; }
     }
 }

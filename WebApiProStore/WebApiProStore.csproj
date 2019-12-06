@@ -6,6 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191205204344_Second.cs" />
+    <Compile Remove="Migrations\20191205204344_Second.Designer.cs" />
+    <Compile Remove="Migrations\20191205204745_Second2.cs" />
+    <Compile Remove="Migrations\20191205204745_Second2.Designer.cs" />
+    <Compile Remove="Migrations\20191205204955_Second3.cs" />
+    <Compile Remove="Migrations\20191205204955_Second3.Designer.cs" />
+    <Compile Remove="Migrations\20191205205352_third.cs" />
+    <Compile Remove="Migrations\20191205205352_third.Designer.cs" />
+    <Compile Remove="Migrations\20191205205817_product.cs" />
+    <Compile Remove="Migrations\20191205205817_product.Designer.cs" />
+    <Compile Remove="Migrations\20191206071536_Second4.cs" />
+    <Compile Remove="Migrations\20191206071536_Second4.Designer.cs" />
+    <Compile Remove="Migrations\20191206071938_Second5.cs" />
+    <Compile Remove="Migrations\20191206071938_Second5.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
