@@ -16,12 +16,12 @@ namespace WebApiProStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ApplicationUserController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private UserManager<ApplicationUser>  _userManager;
-        private SignInManager<ApplicationUser> _singInManager;
+        private UserManager<Users>  _userManager;
+        private SignInManager<Users> _singInManager;
         private readonly ApplicationSettings _appSettings;
-        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> singInManager,IOptions<ApplicationSettings> appSettings)
+        public UsersController(UserManager<Users> userManager, SignInManager<Users> singInManager,IOptions<ApplicationSettings> appSettings)
         {
             _userManager = userManager;
             _singInManager = singInManager;
@@ -29,10 +29,10 @@ namespace WebApiProStore.Controllers
         }
         [HttpPost]
         [Route("Register")]
-        //POST : /api/Application/Register
-        public async Task<Object> PostApplicationUser(ApplicationUserModel model)
+        //POST : /api/Users/Register
+        public async Task<Object> PostApplicationUser(UsersModel model)
         {
-            var applicationUser = new ApplicationUser() {             
+            var User = new Users() {             
                 UserName = model.UserName,
                 Email = model.Email,
                 FullName = model.FullName
@@ -40,7 +40,7 @@ namespace WebApiProStore.Controllers
 
             try
             {
-                var result =await _userManager.CreateAsync(applicationUser,model.Password);
+                var result =await _userManager.CreateAsync(User,model.Password);
                 return Ok(result);
 
             }
@@ -52,7 +52,7 @@ namespace WebApiProStore.Controllers
         }
         [HttpPost]
         [Route("Login")]
-        //POST : /api/Application/Login
+        //POST : /api/Users/Login
         public async Task<IActionResult> Login(LoginModel model)
         {
             var user = await _userManager.FindByNameAsync(model.UserName);

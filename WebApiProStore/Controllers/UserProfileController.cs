@@ -14,8 +14,8 @@ namespace WebApiProStore.Controllers
     [ApiController]
     public class UserProfileController : ControllerBase
     {
-        private UserManager<ApplicationUser> _userManager;
-        public UserProfileController(UserManager<ApplicationUser> userManager)
+        private UserManager<Users> _userManager;
+        public UserProfileController(UserManager<Users> userManager)
         {
             _userManager = userManager;
         }

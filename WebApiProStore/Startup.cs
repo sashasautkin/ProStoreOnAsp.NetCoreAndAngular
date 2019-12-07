@@ -34,11 +34,11 @@ namespace WebApiProStore
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<AuthenticationContext>(options =>
+            services.AddDbContext<DataContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>()
-                .AddEntityFrameworkStores<AuthenticationContext>();
+            services.AddDefaultIdentity<Users>()
+                .AddEntityFrameworkStores<DataContext>();
 
             services.Configure<IdentityOptions>(options =>
             {

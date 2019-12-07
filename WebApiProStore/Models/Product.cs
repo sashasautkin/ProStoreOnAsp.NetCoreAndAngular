@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebApiProStore.Models
 {
-    public class ApplicationProduct 
+    public class Product 
     {
        
         public string Id { get; set; }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiProStore.Models;
 
 namespace WebApiProStore.Migrations
 {
-    [DbContext(typeof(AuthenticationContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DataContext))]
+    [Migration("20191207101904_FirstMigration")]
+    partial class FirstMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,7 +191,7 @@ namespace WebApiProStore.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("WebApiProStore.Models.ApplicationProduct", b =>
+            modelBuilder.Entity("WebApiProStore.Models.Product", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -204,17 +206,35 @@ namespace WebApiProStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ApplicationProducts");
+                    b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WebApiProStore.Models.ApplicationUser", b =>
+            modelBuilder.Entity("WebApiProStore.Models.ShoppingBag", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CustomerName");
+
+                    b.Property<string>("NameProduct");
+
+                    b.Property<int>("Price");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShoppingBags");
+                });
+
+            modelBuilder.Entity("WebApiProStore.Models.Users", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(150)");
 
-                    b.HasDiscriminator().HasValue("ApplicationUser");
+                    b.HasDiscriminator().HasValue("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

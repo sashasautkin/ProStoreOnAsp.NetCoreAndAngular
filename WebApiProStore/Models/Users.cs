@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebApiProStore.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class Users : IdentityUser
     {
         [Column(TypeName="nvarchar(150)")]
 
