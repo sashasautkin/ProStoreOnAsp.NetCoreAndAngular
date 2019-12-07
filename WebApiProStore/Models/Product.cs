@@ -9,8 +9,9 @@ namespace WebApiProStore.Models
 {
     public class Product 
     {
-       
         public string Id { get; set; }
+        public string UserId { get; set; }
+        
         
         [Column(TypeName = "nvarchar(150)")]
         public string UserName { get; set; }
@@ -19,7 +20,7 @@ namespace WebApiProStore.Models
         public string ProductName { get; set; }
 
         
-        public int Price { get; set; }
+        public double Price { get; set; }
 
 
     }
