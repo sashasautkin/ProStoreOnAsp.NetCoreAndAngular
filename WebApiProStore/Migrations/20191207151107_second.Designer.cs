@@ -10,8 +10,8 @@ using WebApiProStore.Models;
 namespace WebApiProStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191207190708_www")]
-    partial class www
+    [Migration("20191127133010_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -189,42 +189,6 @@ namespace WebApiProStore.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("WebApiProStore.Models.ApplicationProduct", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Price");
-
-                    b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(150)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ApplicationProducts");
-                });
-
-            modelBuilder.Entity("WebApiProStore.Models.ApplicationShoppingBag", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CustomerName");
-
-                    b.Property<string>("NameProduct");
-
-                    b.Property<int>("Price");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ApplicationShoppingBags");
                 });
 
             modelBuilder.Entity("WebApiProStore.Models.ApplicationUser", b =>

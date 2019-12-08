@@ -9,9 +9,9 @@ using WebApiProStore.Models;
 
 namespace WebApiProStore.Migrations
 {
-    [DbContext(typeof(AuthenticationContext))]
-    [Migration("20191127133010_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(DataContext))]
+    [Migration("20191206074650_Second")]
+    partial class Second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -189,6 +189,24 @@ namespace WebApiProStore.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("WebApiProStore.Models.ApplicationProduct", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Price");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ApplicationProducts");
                 });
 
             modelBuilder.Entity("WebApiProStore.Models.ApplicationUser", b =>

@@ -11,7 +11,7 @@ namespace WebApiProStore.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        public ValuesController(AuthenticationContext context)
+        public ValuesController(DataContext context)
         {
             
         }
