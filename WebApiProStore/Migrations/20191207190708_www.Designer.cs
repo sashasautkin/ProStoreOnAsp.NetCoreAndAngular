@@ -10,8 +10,8 @@ using WebApiProStore.Models;
 namespace WebApiProStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191206074650_Second")]
-    partial class Second
+    [Migration("20191207190708_www")]
+    partial class www
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -207,6 +207,24 @@ namespace WebApiProStore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ApplicationProducts");
+                });
+
+            modelBuilder.Entity("WebApiProStore.Models.ApplicationShoppingBag", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CustomerName");
+
+                    b.Property<string>("NameProduct");
+
+                    b.Property<int>("Price");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ApplicationShoppingBags");
                 });
 
             modelBuilder.Entity("WebApiProStore.Models.ApplicationUser", b =>

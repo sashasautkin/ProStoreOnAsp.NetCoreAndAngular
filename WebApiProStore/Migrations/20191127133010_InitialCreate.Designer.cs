@@ -9,7 +9,7 @@ using WebApiProStore.Models;
 
 namespace WebApiProStore.Migrations
 {
-    [DbContext(typeof(AuthenticationContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20191127133010_InitialCreate")]
     partial class InitialCreate
     {

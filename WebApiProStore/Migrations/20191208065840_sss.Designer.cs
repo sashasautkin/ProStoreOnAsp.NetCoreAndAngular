@@ -10,8 +10,8 @@ using WebApiProStore.Models;
 namespace WebApiProStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191206074650_Second")]
-    partial class Second
+    [Migration("20191208065840_sss")]
+    partial class sss
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -191,7 +191,7 @@ namespace WebApiProStore.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("WebApiProStore.Models.ApplicationProduct", b =>
+            modelBuilder.Entity("WebApiProStore.Models.Product", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -206,17 +206,35 @@ namespace WebApiProStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ApplicationProducts");
+                    b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WebApiProStore.Models.ApplicationUser", b =>
+            modelBuilder.Entity("WebApiProStore.Models.ShoppingBag", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CustomerName");
+
+                    b.Property<string>("NameProduct");
+
+                    b.Property<int>("Price");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShoppingBags");
+                });
+
+            modelBuilder.Entity("WebApiProStore.Models.Users", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(150)");
 
-                    b.HasDiscriminator().HasValue("ApplicationUser");
+                    b.HasDiscriminator().HasValue("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
