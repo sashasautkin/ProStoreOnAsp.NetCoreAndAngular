@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 namespace WebApiProStore.Models
 {
-    public class ApplicationProductModel
+    public class ApplicationShoppingBagModel
     {
         public string Id { get; set; }
+        public string CustomerName { get; set; }
         public string UserName { get; set; }
-        public string ProductName { get; set; }        
         public int Price { get; set; }
+        public string NameProduct { get; set; }
     }
 }
