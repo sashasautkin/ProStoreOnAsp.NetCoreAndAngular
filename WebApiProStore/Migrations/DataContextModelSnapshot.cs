@@ -9,7 +9,7 @@ using WebApiProStore.Models;
 namespace WebApiProStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

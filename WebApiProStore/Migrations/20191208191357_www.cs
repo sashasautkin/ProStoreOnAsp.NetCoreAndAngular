@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApiProStore.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class www : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,9 +54,10 @@ namespace WebApiProStore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(150)", nullable: true),
                     ProductName = table.Column<string>(type: "nvarchar(150)", nullable: true),
-                    Price = table.Column<int>(nullable: false)
+                    Price = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,9 +69,10 @@ namespace WebApiProStore.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
+                    ProductId = table.Column<string>(nullable: true),
                     CustomerName = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
                     NameProduct = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
