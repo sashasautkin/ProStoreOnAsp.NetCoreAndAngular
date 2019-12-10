@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using WebApiProStore.Dto;
 using WebApiProStore.Models;
 
 namespace WebApiProStore.Controllers
@@ -30,7 +31,7 @@ namespace WebApiProStore.Controllers
         [HttpPost]
         [Route("Register")]
         //POST : /api/Users/Register
-        public async Task<Object> PostUsers(UserModel model)
+        public async Task<Object> PostUsers(UserDto model)
         {
             var User = new User() {             
                 UserName = model.UserName,
@@ -53,7 +54,7 @@ namespace WebApiProStore.Controllers
         [HttpPost]
         [Route("Login")]
         //POST : /api/Users/Login
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginDto model)
         {
             var user = await _userManager.FindByNameAsync(model.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
