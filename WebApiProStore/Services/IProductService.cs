@@ -11,7 +11,7 @@ namespace WebApiProStore.Services
     {
         Task<IEnumerable<Product>> GetAllAsync();
         Task<Product> GetAsync(string id);
-        Task<ProductResponse> AddAsync(Product coment);
+        Task<ProductResponse> AddAsync(Product product);
         Task<ProductResponse> UpdateAsync(string id, Product product);
         Task<ProductResponse> RemoveAsync(string id);
         

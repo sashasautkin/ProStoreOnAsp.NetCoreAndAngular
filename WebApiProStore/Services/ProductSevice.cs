@@ -10,11 +10,11 @@ namespace WebApiProStore.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository _comentRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public ProductService(IProductRepository comentRepository, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
         {
-            _comentRepository = comentRepository;
+            _productRepository = productRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -22,7 +22,7 @@ namespace WebApiProStore.Services
         {
             try
             {
-                await _comentRepository.AddAsync(product);
+                await _productRepository.AddAsync(product);
                 await _unitOfWork.CompleteAsync();
 
                 return new ProductResponse(product);
@@ -35,29 +35,29 @@ namespace WebApiProStore.Services
 
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            return await _comentRepository.GetAllAsync();
+            return await _productRepository.GetAllAsync();
         }
 
        
 
         public async Task<Product> GetAsync(string id)
         {
-            return await _comentRepository.GetAsync(id);
+            return await _productRepository.GetAsync(id);
         }
 
         public async Task<ProductResponse> RemoveAsync(string id)
         {
-            var existingComent = await _comentRepository.GetAsync(id);
+            var existingProduct = await _productRepository.GetAsync(id);
 
-            if (existingComent == null)
+            if (existingProduct == null)
                 return new ProductResponse("Product not found.");
 
             try
             {
-                _comentRepository.Remove(existingComent);
+                _productRepository.Remove(existingProduct);
                 await _unitOfWork.CompleteAsync();
 
-                return new ProductResponse(existingComent);
+                return new ProductResponse(existingProduct);
             }
             catch (Exception ex)
             {

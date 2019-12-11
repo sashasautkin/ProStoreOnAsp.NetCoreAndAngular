@@ -15,6 +15,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebApiProStore.Models;
+using AutoMapper;
+using WebApiProStore.AutoMapper;
+using WebApiProStore.Repositories;
 
 namespace WebApiProStore
 {
@@ -33,13 +36,15 @@ namespace WebApiProStore
             //Inject AppSettings
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            //--------Строка покдключение
             services.AddDbContext<DataContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
 
             services.AddDefaultIdentity<User>()
                 .AddEntityFrameworkStores<DataContext>();
 
+
+            //ForPassword---------------------------------
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -49,11 +54,26 @@ namespace WebApiProStore
                 options.Password.RequiredLength = 4;
             }
             );
+            //----------------------------------------------
+
             services.AddCors();
 
-            //Jwt Authentication
-            var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"].ToString());
+            //AutoMapper;-----------------------------------
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
 
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+
+            //services.AddAutoMapper(typeof(Startup));
+            //-----------------------------------------------
+
+            //Jwt Authentication-----------------------------
+            var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"].ToString());
+           
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -71,6 +91,12 @@ namespace WebApiProStore
                     ClockSkew = TimeSpan.Zero
                 };
             });
+            //----------------------------------------------
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IShoppingBagRepository, ShoppingBagRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

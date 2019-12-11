@@ -42,27 +42,22 @@ namespace WebApiProStore.Services
             {
                 return false;
             }
-            //var roles = await _userManager.GetRolesAsync(user);
-            //foreach (var role in roles)
-            // {
             
-          //  }
-           // return false;
         }
 
         public async Task<UserResponse> RemoveAsync(string id)
         {
-            var existingUser = await _userManager.FindByIdAsync(id);
+            var removeUser = await _userManager.FindByIdAsync(id);
 
-            if (existingUser == null)
+            if (removeUser == null)
                 return new UserResponse("User not found.");
 
             try
             {
-                await _userManager.DeleteAsync(existingUser);
+                await _userManager.DeleteAsync(removeUser);
                 await _unitOfWork.CompleteAsync();
 
-                return new UserResponse(existingUser);
+                return new UserResponse(removeUser);
             }
             catch (Exception ex)
             {
