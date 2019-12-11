@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191211172722_sss.cs" />
+    <Compile Remove="Migrations\20191211172722_sss.Designer.cs" />
+    <Compile Remove="Migrations\20191211182518_qwqe.cs" />
+    <Compile Remove="Migrations\20191211182518_qwqe.Designer.cs" />
+    <Compile Remove="Migrations\20191211182720_sssww.cs" />
+    <Compile Remove="Migrations\20191211182720_sssww.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiProStore.Models;
 
 namespace WebApiProStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20191211184019_qwewqeq")]
+    partial class qwewqeq
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -291,7 +293,7 @@ namespace WebApiProStore.Migrations
                         {
                             Id = "853a7c21-cd96-4f70-a2b6-26cc7d877777",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "02ac6c26-511e-42da-b34b-0feae204f068",
+                            ConcurrencyStamp = "b68e4b1d-02b4-415f-b391-29359c7a793c",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "AQAAAAEAACcQAAAAEIK69ry4C5Y7JCmXbtwK+mjyCmJdy65JqdDkxAtd+G26Aq8ajyUbPBe68DW5VSnO1w==",
@@ -303,7 +305,7 @@ namespace WebApiProStore.Migrations
                         {
                             Id = "853a7c21-cd96-4f70-a2b6-26cc7d875111",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9706b14a-80b6-4d08-b8ad-33667e3798a7",
+                            ConcurrencyStamp = "943be57c-f66f-40b5-add8-aa5727eeeff8",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "AQAAAAEAACcQAAAAEIK69ry4C5Y7JCmXbtwK+mjyCmJdy65JqdDkxAtd+G26Aq8ajyUbPBe68DW5VSnO1w==",
@@ -362,14 +364,16 @@ namespace WebApiProStore.Migrations
                 {
                     b.HasOne("WebApiProStore.Models.User", "users")
                         .WithMany("products")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebApiProStore.Models.ShoppingBag", b =>
                 {
                     b.HasOne("WebApiProStore.Models.Product", "products")
                         .WithMany("shoppingBags")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WebApiProStore.Models.User", "users")
                         .WithMany("shoppingBags")

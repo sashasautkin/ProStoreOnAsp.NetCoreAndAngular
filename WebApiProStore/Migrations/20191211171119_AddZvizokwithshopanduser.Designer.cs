@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiProStore.Models;
 
 namespace WebApiProStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20191211171119_AddZvizokwithshopanduser")]
+    partial class AddZvizokwithshopanduser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -209,24 +211,6 @@ namespace WebApiProStore.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "sadfasdfa",
-                            Price = 3000.0,
-                            ProductName = "Car",
-                            UserId = "853a7c21-cd96-4f70-a2b6-26cc7d875177",
-                            UserName = "sasha"
-                        },
-                        new
-                        {
-                            Id = "rrrrrrr",
-                            Price = 1000.0,
-                            ProductName = "Laptop",
-                            UserId = "853a7c21-cd96-4f70-a2b6-26cc7d875177",
-                            UserName = "sasha"
-                        });
                 });
 
             modelBuilder.Entity("WebApiProStore.Models.ShoppingBag", b =>
@@ -248,33 +232,9 @@ namespace WebApiProStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("ShoppingBags");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "wqewqeweqeqweqeqweqweqweqweq",
-                            CustomerName = "sasha",
-                            Price = 3000.0,
-                            ProductId = "sadfasdfa",
-                            ProductName = "Car",
-                            UserId = "853a7c21-cd96-4f70-a2b6-26cc7d875177",
-                            UserName = "vania"
-                        },
-                        new
-                        {
-                            Id = "wewewrergfgdwtrwerwrewew",
-                            CustomerName = "sasha",
-                            Price = 3000.0,
-                            ProductId = "sadfasdfa",
-                            ProductName = "Car",
-                            UserId = "853a7c21-cd96-4f70-a2b6-26cc7d875177",
-                            UserName = "alla"
-                        });
                 });
 
             modelBuilder.Entity("WebApiProStore.Models.User", b =>
@@ -285,32 +245,6 @@ namespace WebApiProStore.Migrations
                         .HasColumnType("nvarchar(150)");
 
                     b.HasDiscriminator().HasValue("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "853a7c21-cd96-4f70-a2b6-26cc7d877777",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "02ac6c26-511e-42da-b34b-0feae204f068",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEIK69ry4C5Y7JCmXbtwK+mjyCmJdy65JqdDkxAtd+G26Aq8ajyUbPBe68DW5VSnO1w==",
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "Narkoman"
-                        },
-                        new
-                        {
-                            Id = "853a7c21-cd96-4f70-a2b6-26cc7d875111",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "9706b14a-80b6-4d08-b8ad-33667e3798a7",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEIK69ry4C5Y7JCmXbtwK+mjyCmJdy65JqdDkxAtd+G26Aq8ajyUbPBe68DW5VSnO1w==",
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "Alkash"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -362,18 +296,16 @@ namespace WebApiProStore.Migrations
                 {
                     b.HasOne("WebApiProStore.Models.User", "users")
                         .WithMany("products")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("WebApiProStore.Models.ShoppingBag", b =>
                 {
-                    b.HasOne("WebApiProStore.Models.Product", "products")
-                        .WithMany("shoppingBags")
-                        .HasForeignKey("ProductId");
-
                     b.HasOne("WebApiProStore.Models.User", "users")
                         .WithMany("shoppingBags")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

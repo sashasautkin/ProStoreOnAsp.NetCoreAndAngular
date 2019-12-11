@@ -19,8 +19,9 @@ namespace WebApiProStore.Models
         [Column(TypeName = "nvarchar(150)")]
         public string ProductName { get; set; }
 
-        
         public double Price { get; set; }
+        public virtual User users { get; set; }
+        public virtual ICollection<ShoppingBag> shoppingBags { get; set; }
         
     }
 }

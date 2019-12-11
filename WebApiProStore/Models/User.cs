@@ -12,5 +12,7 @@ namespace WebApiProStore.Models
         [Column(TypeName="nvarchar(150)")]
 
         public string FullName { get; set; }
+        public virtual ICollection<Product> products { get; set; } 
+        public virtual ICollection<ShoppingBag> shoppingBags { get; set; }
     }
 }
