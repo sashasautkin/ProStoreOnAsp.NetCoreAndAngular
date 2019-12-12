@@ -39,7 +39,7 @@ namespace WebApiProStore.Controllers
         public async Task<IActionResult> Post([FromBody] ShoppingBagDto shoppingBag)
         {
             var pt = _mapper.Map<ShoppingBagDto, ShoppingBag>(shoppingBag);
-            pt.UserId = HttpContext.GetUserI d();
+            
             var result = await _bagService.AddAsync(pt);
 
             if (!result.Success)
@@ -48,7 +48,21 @@ namespace WebApiProStore.Controllers
             }
 
             
-            return Ok("Thats Ok");
+            return Ok("Product was added in shopping bag");
+        }
+        [HttpDelete("Delete/{id}", Name = "DeleteProductFromShoppingBag")]
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var result = await _bagService.RemoveAsync(id);
+
+            if (!result.Success)
+            {
+                return BadRequest();
+            }
+
+
+            return Ok("Product was Delete");
         }
 
     }

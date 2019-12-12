@@ -87,26 +87,7 @@ namespace WebApiProStore.Controllers
             }
 
         }
-        [HttpGet]
-        [Route("GetUsers")]
-        [ProducesResponseType(typeof(IEnumerable<UserDto>), 200)]
-        public async Task<IEnumerable<UserDto>> Get()
-        {
-            var users = await _userService.GetAllAsync();
-            var dto = _mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(users);
-
-            return dto;
-        }
-
-        [HttpGet("Get/{id}", Name = "GetUser")]
-        public async Task<UserDto> Get(string id)
-        {
-
-            var user = await _userService.GetAsync(id);
-            var dto = _mapper.Map<User, UserDto>(user);
-
-            return dto;
-        }
+               
 
         [HttpDelete("Delete/{id}", Name = "DeleteUser")]
 
