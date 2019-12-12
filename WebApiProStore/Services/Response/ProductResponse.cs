@@ -8,7 +8,7 @@ namespace WebApiProStore.Services.Response
 {
     public class ProductResponse : BaseResponse<Product>
     {
-        public ProductResponse(Product post) : base(post)
+        public ProductResponse(Product product) : base(product)
         {
 
         }

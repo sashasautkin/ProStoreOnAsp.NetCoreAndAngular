@@ -6,13 +6,13 @@ using WebApiProStore.Models;
 
 namespace WebApiProStore.Services.Response
 {
-    public class ShoppingBagResponse : BaseResponse<ShoppingBag>
+    public class AdminResponse : BaseResponse<User>
     {
-        public ShoppingBagResponse(ShoppingBag shoppingBag) : base(shoppingBag)
+        public AdminResponse(User user) : base(user)
         {
 
         }
-        public ShoppingBagResponse(string message) : base(message)
+        public AdminResponse(string message) : base(message)
         {
 
         }

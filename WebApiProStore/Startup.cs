@@ -18,6 +18,7 @@ using WebApiProStore.Models;
 using AutoMapper;
 using WebApiProStore.AutoMapper;
 using WebApiProStore.Repositories;
+using WebApiProStore.Services;
 
 namespace WebApiProStore
 {
@@ -96,6 +97,13 @@ namespace WebApiProStore
             services.AddScoped<IShoppingBagRepository, ShoppingBagRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IShoppingBagService, ShoppingBagService>();
+            services.AddScoped<IAdminService, AdminService>();
+
 
         }
 
@@ -106,6 +114,12 @@ namespace WebApiProStore
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
+
             app.UseCors(builder =>
             builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString())
             .AllowAnyHeader()

@@ -19,6 +19,8 @@ namespace WebApiProStore.AutoMapper
             CreateMap<ProductDto, Product>();
             CreateMap<ShoppingBag, ShoppingBagDto>();
             CreateMap<ShoppingBagDto, ShoppingBag>();
+            CreateMap<AdminDto, User>();
+            CreateMap<User, AdminDto>();
 
         }
     }
