@@ -27,7 +27,6 @@ namespace WebApiProStore.Controllers
 
         [HttpGet]
         [Route("GetUsersForAdmin")]
-        [ProducesResponseType(typeof(IEnumerable<AdminDto>), 200)]
         public async Task<IEnumerable<AdminDto>> Get()
         {
             var users = await _adminService.GetAllAsync();

@@ -50,8 +50,8 @@ namespace WebApiProStore.Controllers
             
             return Ok("Product was added in shopping bag");
         }
-        [HttpDelete("Delete/{id}", Name = "DeleteProductFromShoppingBag")]
 
+        [HttpDelete("Delete/{id}", Name = "DeleteProductFromShoppingBag")]
         public async Task<IActionResult> Delete(string id)
         {
             var result = await _bagService.RemoveAsync(id);
@@ -60,8 +60,6 @@ namespace WebApiProStore.Controllers
             {
                 return BadRequest();
             }
-
-
             return Ok("Product was Delete");
         }
 

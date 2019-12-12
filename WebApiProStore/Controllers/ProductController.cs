@@ -28,15 +28,12 @@ namespace WebApiProStore.Controllers
         [HttpGet("get/{id}", Name = "GetOneItem")]
         public async Task<ProductDto> Get(string id)
         {
-
             var product = await _productService.GetAsync(id);
             var dto = _mapper.Map<Product, ProductDto>(product);
-
             return dto;
         }
         [HttpGet]
         [Route("GetAllItem")]
-        [ProducesResponseType(typeof(IEnumerable<ProductDto>), 200)]
         public async Task<IEnumerable<ProductDto>> Get()
         {
             var products = await _productService.GetAllAsync();
@@ -44,8 +41,8 @@ namespace WebApiProStore.Controllers
 
             return dto;
         }
-        [HttpDelete("Delete/{id}", Name = "DeleteProductFromProductTable")]
 
+        [HttpDelete("Delete/{id}", Name = "DeleteProductFromProductTable")]
         public async Task<IActionResult> Delete(string id)
         {
             var result = await _productService.RemoveAsync(id);
@@ -54,8 +51,6 @@ namespace WebApiProStore.Controllers
             {
                 return BadRequest();
             }
-
-
             return Ok("Product was Delete");
         }
         [HttpPost("post", Name = "AddProductInProductTable")]
@@ -69,8 +64,6 @@ namespace WebApiProStore.Controllers
             {
                 return BadRequest();
             }
-
-
             return Ok("Product Was created in product table");
         }
 
