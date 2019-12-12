@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,13 +11,18 @@ namespace WebApiProStore.Services
 {
     public class ShoppingBagService : IShoppingBagService
     {
+        protected readonly DataContext _context;
+        private readonly DbSet<ShoppingBag> _entities;
+        
 
         private readonly IShoppingBagRepository _bagRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public ShoppingBagService(IShoppingBagRepository bagRepository, IUnitOfWork unitOfWork)
+        public ShoppingBagService(DataContext context,IShoppingBagRepository bagRepository, IUnitOfWork unitOfWork)
         {
             _bagRepository = bagRepository;
             _unitOfWork = unitOfWork;
+            _context = context;
+            _entities = _context.Set<ShoppingBag>();
         }
 
 
@@ -38,6 +44,13 @@ namespace WebApiProStore.Services
         public async Task<IEnumerable<ShoppingBag>> GetAllAsync()
         {
             return await _bagRepository.GetAllAsync();
+        }
+
+        public async Task<ShoppingBag> GetAsync(string id)
+        {
+            return await (from p in _context.ShoppingBags
+                          where p.UserId == id
+                          select p).FirstAsync();
         }
 
         public async Task<ShoppingBagResponse> RemoveAsync(string id)

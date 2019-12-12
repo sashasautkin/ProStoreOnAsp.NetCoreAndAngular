@@ -29,7 +29,7 @@ namespace WebApiProStore.Services
             }
             catch (Exception ex)
             {
-                return new ProductResponse($"An error occurred when saving the coment: {ex.Message}");
+                return new ProductResponse($"An error , when saving the Product: {ex.Message}");
             }
         }
 

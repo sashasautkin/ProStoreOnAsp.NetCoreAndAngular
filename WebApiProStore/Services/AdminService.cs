@@ -26,6 +26,11 @@ namespace WebApiProStore.Services
             return await _userManager.Users.ToListAsync();
         }
 
+        public async Task<User> GetAsync(string id)
+        {
+            return await _userManager.Users.Where(x => x.Id == id).FirstAsync();
+        }
+
         public async Task<AdminResponse> RemoveAsync(string id)
         {
             var removeUser = await _userManager.FindByIdAsync(id);
@@ -61,6 +66,7 @@ namespace WebApiProStore.Services
                 return new AdminResponse($"An error occurred when changing password: {ex.Message}");
             }
         }
+
 
         
     }

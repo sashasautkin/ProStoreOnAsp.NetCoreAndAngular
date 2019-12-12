@@ -26,7 +26,7 @@ namespace WebApiProStore.Controllers
         }
 
         [HttpGet]
-        [Route("GetUsers")]
+        [Route("GetUsersForAdmin")]
         [ProducesResponseType(typeof(IEnumerable<AdminDto>), 200)]
         public async Task<IEnumerable<AdminDto>> Get()
         {
@@ -35,5 +35,33 @@ namespace WebApiProStore.Controllers
 
             return dto;
         }
+
+        [HttpGet("get/{id}", Name = "GetUserForAdmin")]
+        public async Task<AdminDto> Get(string id)
+        {
+            
+            var user = await _adminService.GetAsync(id);
+            var dto = _mapper.Map<User, AdminDto>(user);
+
+            return dto;
+        }
+
+        [HttpDelete("delete/{id}", Name = "DeleteUserForAdmin")]
+        
+        public async Task<IActionResult> Delete(string id)
+        {
+            var result = await _adminService.RemoveAsync(id);
+
+            if (!result.Success)
+            {
+                return BadRequest();
+            }
+
+            
+            return Ok("Delete");
+        }
+
+
+
     }
 }

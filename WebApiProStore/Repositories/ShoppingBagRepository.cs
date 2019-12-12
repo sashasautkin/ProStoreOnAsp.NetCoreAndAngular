@@ -32,7 +32,7 @@ namespace WebApiProStore.Repositories
         public override async Task<ShoppingBag> GetAsync(string id)
         {
             return await (from p in _context.ShoppingBags
-                          where p.Id == id
+                          where p.UserId == id
                           select p).FirstAsync();
 
         }

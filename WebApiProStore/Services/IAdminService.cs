@@ -12,5 +12,6 @@ namespace WebApiProStore.Services
         Task<IEnumerable<User>> GetAllAsync();
         Task<AdminResponse> UpdatePasswordAsync(string id, string currentPassword, string newPassword);
         Task<AdminResponse> RemoveAsync(string id);
+        Task<User> GetAsync(string id);
     }
 }

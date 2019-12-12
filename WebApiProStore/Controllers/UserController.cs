@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebApiProStore.Dto;
 using WebApiProStore.Models;
-
+using WebApiProStore.Services;
 
 namespace WebApiProStore.Controllers
 {
@@ -22,9 +23,13 @@ namespace WebApiProStore.Controllers
     {
         private UserManager<User>  _userManager;
         private SignInManager<User> _singInManager;
+        private readonly IUserService _userService;
         private readonly ApplicationSettings _appSettings;
-        public UserController(UserManager<User> userManager, SignInManager<User> singInManager,IOptions<ApplicationSettings> appSettings)
+        private readonly IMapper _mapper;
+        public UserController(IUserService userService, IMapper mapper, UserManager<User> userManager, SignInManager<User> singInManager,IOptions<ApplicationSettings> appSettings)
         {
+            _userService = userService;
+            _mapper = mapper;
             _userManager = userManager;
             _singInManager = singInManager;
             _appSettings = appSettings.Value;
@@ -81,6 +86,41 @@ namespace WebApiProStore.Controllers
                 return BadRequest(new { message = "UserName or Password is incorect" });
             }
 
+        }
+        [HttpGet]
+        [Route("GetUsers")]
+        [ProducesResponseType(typeof(IEnumerable<UserDto>), 200)]
+        public async Task<IEnumerable<UserDto>> Get()
+        {
+            var users = await _userService.GetAllAsync();
+            var dto = _mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(users);
+
+            return dto;
+        }
+
+        [HttpGet("Get/{id}", Name = "GetUser")]
+        public async Task<UserDto> Get(string id)
+        {
+
+            var user = await _userService.GetAsync(id);
+            var dto = _mapper.Map<User, UserDto>(user);
+
+            return dto;
+        }
+
+        [HttpDelete("Delete/{id}", Name = "DeleteUser")]
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var result = await _userService.RemoveAsync(id);
+
+            if (!result.Success)
+            {
+                return BadRequest();
+            }
+
+
+            return Ok("User was Delete");
         }
     }
 
