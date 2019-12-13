@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -104,6 +105,7 @@ namespace WebApiProStore
             services.AddScoped<IShoppingBagService, ShoppingBagService>();
             services.AddScoped<IAdminService, AdminService>();
 
+            
 
         }
 
@@ -119,6 +121,7 @@ namespace WebApiProStore
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            
 
             app.UseCors(builder =>
             builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString())

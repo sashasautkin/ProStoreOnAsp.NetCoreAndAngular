@@ -10,7 +10,7 @@ namespace WebApiProStore.Services
     public interface IShoppingBagService
     {
         Task<IEnumerable<ShoppingBag>> GetAllAsync();
-        Task<ShoppingBag> GetAsync(string id);
+        Task<IEnumerable<ShoppingBag>> GetAsync(string id);
         Task<ShoppingBagResponse> AddAsync(ShoppingBag product);
         Task<ShoppingBagResponse> RemoveAsync(string id);
     }

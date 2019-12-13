@@ -46,11 +46,11 @@ namespace WebApiProStore.Services
             return await _bagRepository.GetAllAsync();
         }
 
-        public async Task<ShoppingBag> GetAsync(string id)
+        public async Task<IEnumerable<ShoppingBag>> GetAsync(string id)
         {
             return await (from p in _context.ShoppingBags
                           where p.UserId == id
-                          select p).FirstAsync();
+                          select p).ToListAsync();
         }
 
         public async Task<ShoppingBagResponse> RemoveAsync(string id)

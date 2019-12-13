@@ -8,6 +8,7 @@ namespace WebApiProStore.Dto
     public class ShoppingBagDto
     {
         public string Id { get; set; }
+        public string UserId { get; set; }
         public string ProductId { get; set; }
         public string CustomerName { get; set; }
         public string UserName { get; set; }
