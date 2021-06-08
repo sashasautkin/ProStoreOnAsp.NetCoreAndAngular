@@ -25,11 +25,11 @@ namespace WebApiProStore.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("get/{id}", Name = "GetOneItem")]
-        public async Task<ProductDto> Get(string id)
+        [HttpGet("get/{UserId}", Name = "GetOneItem")]
+        public async Task<IEnumerable<ProductDto>> Get(string UserId)
         {
-            var product = await _productService.GetAsync(id);
-            var dto = _mapper.Map<Product, ProductDto>(product);
+            var product = await _productService.GetAsync(UserId);            
+            var dto = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(product);
             return dto;
         }
         [HttpGet]

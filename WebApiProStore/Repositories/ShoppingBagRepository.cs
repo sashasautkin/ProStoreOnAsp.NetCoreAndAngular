@@ -32,10 +32,11 @@ namespace WebApiProStore.Repositories
         public override async Task<ShoppingBag> GetAsync(string id)
         {
             return await (from p in _context.ShoppingBags
-                          where p.UserId == id
+                          where p.Id == id
                           select p).FirstAsync();
 
         }
+        
 
         public void Remove(ShoppingBag entity)
         {

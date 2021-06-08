@@ -13,6 +13,6 @@ namespace WebApiProStore.Dto
         public string CustomerName { get; set; }
         public string UserName { get; set; }
         public double Price { get; set; }
-        public string NameProduct { get; set; }
+        public string ProductName { get; set; }
     }
 }

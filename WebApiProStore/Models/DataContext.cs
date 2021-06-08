@@ -75,7 +75,7 @@ namespace WebApiProStore.Models
                 new ShoppingBag
                 {
                     Id = "wqewqeweqeqweqeqweqweqweqweq",
-                    UserId = "853a7c21-cd96-4f70-a2b6-26cc7d875177",
+                    UserId = "757b2c82-b69a-445f-b08a-7a4e2021892b",
                     ProductId = "sadfasdfa",
                     CustomerName = "sasha" , 
                     UserName = "vania",
@@ -85,7 +85,7 @@ namespace WebApiProStore.Models
                 new ShoppingBag
                 {
                     Id = "wewewrergfgdwtrwerwrewew",
-                    UserId = "853a7c21-cd96-4f70-a2b6-26cc7d875177",
+                    UserId = "7125f2a3-55d7-4c79-9615-7c75db909649",
                     ProductId = "sadfasdfa",
                     CustomerName = "sasha",
                     UserName = "alla",

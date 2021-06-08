@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,12 +11,16 @@ namespace WebApiProStore.Services
 {
     public class ProductService : IProductService
     {
+        private readonly DbSet<Product> _entities;
+        protected readonly DataContext _context;
         private readonly IProductRepository _productRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork, DataContext context)
         {
             _productRepository = productRepository;
             _unitOfWork = unitOfWork;
+            _context = context;
+            _entities = _context.Set<Product>();
         }
 
         public async Task<ProductResponse> AddAsync(Product product)
@@ -40,9 +45,11 @@ namespace WebApiProStore.Services
 
        
 
-        public async Task<Product> GetAsync(string id)
+        public async Task<IEnumerable<Product>> GetAsync(string id)
         {
-            return await _productRepository.GetAsync(id);
+            return await (from p in _context.Products
+                          where p.UserId == id
+                          select p).ToListAsync();
         }
 
         public async Task<ProductResponse> RemoveAsync(string id)
